@@ -46,6 +46,10 @@ const App = () => {
 
   const [revealedCount, setRevealedCount] = useState(0);
 
+  const [masteredCards, setMasteredCards] = useState([]);
+
+  const [congratsShown, setCongratsShown] = useState(false);
+
   const markGuessed = (index) => {
     setGuessedStatus(prev => {
       const updated = [...prev];
@@ -77,7 +81,9 @@ const App = () => {
   }
 
   const handleShuffle = () => {
-    setCardOrder(cardOrder.sort(() => Math.random() - 0.5));
+    const remainingCards = cardPairs.map((_, i) => i).filter(i => !masteredCards.includes(i));
+
+    setCardOrder(remainingCards.sort(() => Math.random() - 0.5));
 
     setGuessedStatus(Array(cardPairs.length).fill(false));
 
@@ -96,6 +102,44 @@ const App = () => {
     setRevealedCount(0);
 
     setCardSide(0);
+  }
+
+  const handleMarkMastered = () => {
+    const currentIndex = cardOrder[currentCard];
+
+    if (!masteredCards.includes(currentIndex)) {
+      const newMastered = [...masteredCards, currentIndex];
+
+      setMasteredCards(newMastered);
+
+      const newCardOrder = cardOrder.filter(i => i !== currentIndex);
+
+      setCardOrder(newCardOrder);
+
+      setCurrentCard(prev => Math.min(prev, newCardOrder.length - 1));
+
+    setCorrectName('');
+
+    setInput('');
+    
+    setCardSide(0);
+
+      if (newMastered.length === cardPairs.length) {
+        setCongratsShown(true);
+
+        setCurrentCard(-1);
+      }
+    }
+  }
+
+  const handleResetMastered = () => {
+    setMasteredCards([]);
+
+    setCardOrder([...Array(cardPairs.length).keys()].sort(() => Math.random() - 0.5));
+
+    setCurrentCard(0);
+
+    setCongratsShown(false);
   }
 
   const updateCardSide = () => {    
@@ -158,16 +202,6 @@ const App = () => {
     
       <p>Submit your guess for which animatronic matches the image and flip over the card to see the answer.</p>
 
-      <div className='deck-statistics'>
-        <div className='counts-display'>
-          <h4>Deck Statistics</h4>
-
-          <p>Current Streak: {streakCount}, Longest Streak: {longestStreak}</p>
-
-          <p>Correct Answers: {correctCount}, Incorrect Answers: {wrongCount}, Cards Revealed: {revealedCount}</p>
-        </div>
-      </div>
-
       <div className='flashcard-container'>
         <h4>Card {(currentCard === -1) ? '-' : currentCard + 1}/{cardOrder.length}</h4>
 
@@ -176,7 +210,8 @@ const App = () => {
             <div className='card-inner'>
               <div className='card-front'>
                 {currentCard !== -1 ?
-                    <img src={cardPairs[cardOrder[currentCard]].image} />:
+                    <img src={cardPairs[cardOrder[currentCard]].image} />: congratsShown ?
+                    <h2>Congratulations! You've mastered all the cards!</h2> :
                     <h2>Submit your guess for which animatronic matches the image below. Click on the card to flip it over and see the answer. When you've mastered a card, click the mastered button to remove it from the deck.</h2>            
                 }
               </div>
@@ -204,6 +239,8 @@ const App = () => {
             />
 
             <button onClick={handleSubmit} id='submit-button' disabled={(currentCard === -1) || (guessedStatus[cardOrder[currentCard]]) ? true : false}>Submit Answer</button>
+
+            <button onClick={handleMarkMastered} id='mastered-button' disabled={currentCard === -1}>Mark as Mastered</button>
           </div>
         </div>
                         
@@ -212,7 +249,49 @@ const App = () => {
 
           <button onClick={handleNextClick} id='forward-button' disabled={currentCard === cardOrder.length - 1 ? true : false}>→</button>
 
-          <button onClick={handleShuffle} id='shuffle-button'>Shuffle Cards</button>
+          <button onClick={handleShuffle} id='shuffle-button' disabled={congratsShown ? true : false}>Shuffle Cards</button>
+
+          <button onClick={handleResetMastered} id='reset-button' disabled={masteredCards.length === 0}>Reset Mastered Cards</button>
+        </div>
+      </div>
+
+      <div className='deck-statistics'>
+        <h3>Deck Statistics</h3>
+
+        <div className='stats-container'>
+          <div className='counters'>
+            <h4>Current Streak:</h4>
+
+            <p>{streakCount}</p>
+
+            <h4>Longest Streak:</h4>
+
+            <p>{longestStreak}</p>
+          </div>
+
+          <div className='counters'>
+            <h4>Correct Answers:</h4>
+
+            <p>{correctCount}</p>
+
+            <h4>Incorrect Answers:</h4>
+
+            <p>{wrongCount}</p>
+
+            <h4>Cards Revealed:</h4>
+
+            <p>{revealedCount}</p>
+          </div>
+          
+          <div className='counters' id='mastered-display'>
+            <h4>Mastered Cards:</h4>
+          
+            <ul>
+              {masteredCards.map(index => (
+                <li key={index}>{cardPairs[index].name}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 

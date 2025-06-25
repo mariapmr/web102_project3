@@ -2,9 +2,9 @@
 
 Submitted by: Maria Priebe Rocha
 
-This web app: displays flashcards allowing the user to quiz themself on the names of the animatronic from Five Nights at Freddy's 2 based on their photos, where clicking the flashcard displays the answer. Users can input their guess into an input box and submit the guess to get visual feedback that their answer is correct or incorrect. The web app tracks the user's correct answer streak and longest answer streak. The user can navigate through the list of cards with the forward and back arrows, as well as click the shuffle button to go back to the start of the deck in a random order. User answers are considered correct regardless of uppercase/lowercase and punctuation discrepancies. The quiz feature also handles the special case of Shadow Bonnie so that users can input either Shadow Bonnie or RWQFSFASXC to receive a correct answer.
+This web app: displays flashcards allowing the user to quiz themself on the names of the animatronic from Five Nights at Freddy's 2 based on their photos, where clicking the flashcard displays the answer. Users can input their guess into an input box and submit the guess to get visual feedback that their answer is correct or incorrect. The web app tracks the user's correct answer streak and longest answer streak. The user can navigate through the list of cards with the forward and back arrows, as well as click the shuffle button to go back to the start of the deck in a random order. User answers are considered correct regardless of uppercase/lowercase and punctuation discrepancies. The quiz feature also handles the special case of Shadow Bonnie so that users can input either Shadow Bonnie or RWQFSFASXC to receive a correct answer. The user can mark cards as mastered to remove them from the visible cards and add them to a list of mastered cards. The user can reset the list of mastered cards. When all cards have been mastered, a congratulations message is shown.
 
-Time spent: 7 hours spent in total
+Time spent: 8 hours spent in total
 
 ## Required Features
 
@@ -32,7 +32,7 @@ The following **optional** features are implemented:
   - The current counter increments when a user guesses an answer correctly
   - The current counter resets to 0 when a user guesses an answer incorrectly
   - A separate counter tracks the longest streak, updating if the value of the current streak counter exceeds the value of the longest streak counter 
-- [ ] A user can mark a card that they have mastered and have it removed from the pool of displayed cards
+- [X] A user can mark a card that they have mastered and have it removed from the pool of displayed cards
   - The user can mark a card to indicate that it has been mastered
   - Mastered cards are removed from the pool of displayed cards and added to a list of mastered cards
 
@@ -43,20 +43,22 @@ The following **additional** features are implemented:
 
 * [X] A user cannot submit multiple guesses or submit a guess if they have flipped the card to see the answer
 
-* [X] A counter tracks the user's statistics on the deck, displaying the number of guesses they got correct or incorrect, as well as the number of cards they revealed the correct answer for.
+* [X] A counter tracks the user's statistics on the deck, displaying the number of guesses they got correct or incorrect, as well as the number of cards they revealed the correct answer for
+
+* [X] A user can reset the list of mastered cards and re-shuffle the deck
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='web102_project3_demo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with [Kap](https://getkap.co/)
 
 ## Notes
 
-Implementing fuzzy matching in this web app was challenging. While it was relatively easy to find a function that could accomplish this, it took me some time to get used to the function's syntax so that I could properly accomplish it. It was also challenging to update the true name for the input to be checked against because my initial implementation did not account for asynchronous state updates. Implementing the shuffle button was challenging because I encountered issues making sure that all of my state variables properly handled the change in order.
+Implementing fuzzy matching in this web app was challenging. While it was relatively easy to find a function that could accomplish this, it took me some time to get used to the function's syntax so that I could properly accomplish it. It was also challenging to update the true name for the input to be checked against because my initial implementation did not account for asynchronous state updates. Implementing the shuffle button was challenging because I encountered issues making sure that all of my state variables properly handled the change in order. The most challenging feature was the 'Mark as Mastered' button. I struggled to manage all of the state variables that needed updating and encountered issues where variables were updating asynchronously and messing with the card order.
 
 ## License
 

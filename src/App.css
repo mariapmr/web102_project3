@@ -36,7 +36,17 @@ body {
   padding: 10px;
   border-radius: 5px;
   color: black;
-  margin-top: 20px;
+  margin-top: 30px;
+}
+
+.stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.stats-container > * {
+  flex: 1 1 calc(33.333%);
 }
 
 .flashcard-container {
@@ -45,6 +55,27 @@ body {
 
 .container {
   place-items: center;
+}
+
+.counters h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.counters p {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+#mastered-display ul {
+  columns: 2;
+  list-style-type: square;
+  text-align: left;
+  margin-right: 10px;
+}
+
+#mastered-display ul li {
+  margin-bottom: 5px;
 }
 
 .Card {
@@ -141,6 +172,7 @@ button:disabled {
 
 #submit-button {
   margin-left: 30px;
+  margin-right: 20px;
   background-color: #6665ff;
   color: white;
 }
@@ -157,3 +189,6 @@ button:disabled {
   margin-right: 10px;
 }
 
+#shuffle-button {
+  margin-right: 30px;
+}

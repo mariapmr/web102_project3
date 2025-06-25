@@ -56,7 +56,7 @@ GIF created with [Kap](https://getkap.co/)
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Implementing fuzzy matching in this web app was challenging. While it was relatively easy to find a function that could accomplish this, it took me some time to get used to the function's syntax so that I could properly accomplish it. It was also challenging to update the true name for the input to be checked against because my initial implementation did not account for asynchronous state updates. Implementing the shuffle button was challenging because I encountered issues making sure that all of my state variables properly handled the change in order.
 
 ## License
 

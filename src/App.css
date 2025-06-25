@@ -32,7 +32,6 @@ body {
 .deck-statistics {
   justify-self: center;
   background-color: #2ef553;
-  width: 75%;
   padding: 10px;
   border-radius: 5px;
   color: black;
@@ -151,7 +150,6 @@ button:disabled {
 
 .mini-container {
   display: flex;
-  width: 50%;
   margin-bottom: 20px;
   justify-content: center;
 }

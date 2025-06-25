@@ -1,0 +1,159 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Lucida Console', monospace;
+  color: white;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  background-color: black;
+}
+
+.title {
+  vertical-align: center;
+}
+
+.title h2 {
+  display: inline-block;
+  vertical-align: center;
+}
+
+.title img {
+  display: inline-block;
+  width: 30%;
+  margin-right: 20px;
+}
+
+.deck-statistics {
+  justify-self: center;
+  background-color: #2ef553;
+  width: 75%;
+  padding: 10px;
+  border-radius: 5px;
+  color: black;
+  margin-top: 20px;
+}
+
+.flashcard-container {
+  margin-top: 30px;
+}
+
+.container {
+  place-items: center;
+}
+
+.Card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  padding-bottom: 20px;
+  min-height: fit-content;
+  width: 50%;
+  color: black;
+  height: 400px;
+  cursor: pointer;
+  position: relative;
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.Card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  border-radius: 5px;
+  box-shadow: 0 4px 16px #bebebe;
+  background: white;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card-front img {
+  height: 95%;
+}
+
+.Card.toy .card-front, .Card.toy .card-back { background-color: #fb6b60; }
+.Card.withered .card-front, .Card.withered .card-back { background-color: #c67c19; }
+.Card.secret .card-front, .Card.secret .card-back { background-color: #6665ff; }
+.Card.default .card-front, .Card.default .card-back { background-color: #fbb720; }
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 1em 2em;
+  font-size: 1em;
+  font-family: 'Lucida Console', monospace;
+  background-color: #fbb720;
+  color: black;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ded7d7;
+  color: white;
+  cursor: not-allowed;
+}
+
+.mini-container {
+  display: flex;
+  width: 50%;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.mini-container p {
+  margin-right: 10px;
+}
+
+#wrong {
+  box-shadow: red 0 0 16px;
+  background-color: #ffc8c9;
+}
+
+#correct {
+  box-shadow: #7cfc00 0 0 16px;
+  background-color: #d1ffbd;
+}
+
+#submit-button {
+  margin-left: 30px;
+  background-color: #6665ff;
+  color: white;
+}
+
+#submit-button:disabled {
+  background-color: #ded7d7;
+}
+
+#forward-button {
+  margin-right: 30px;
+}
+
+#back-button {
+  margin-right: 10px;
+}
+
